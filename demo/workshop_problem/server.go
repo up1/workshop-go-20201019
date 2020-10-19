@@ -12,8 +12,6 @@ type add struct {
 	Sum int
 }
 
-// var htmlTemplate = template.Must(template.ParseFiles("template.html"))
-
 func handleAdd(w http.ResponseWriter, r *http.Request) {
 	var html bytes.Buffer
 	operand1, operand2 := r.FormValue("operand1"), r.FormValue("operand2")
