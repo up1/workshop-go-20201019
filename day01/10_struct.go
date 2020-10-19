@@ -22,10 +22,11 @@ func main() {
 	fmt.Println("In main ", p)
 
 	type first struct {
-		f float64 // 8 bytes
 		b bool    // 1 byte
+		f float64 // 8 bytes
 		i int32   // 4 bytes
 	}
 	a := first{}
-	fmt.Println(unsafe.Sizeof(a))
+
+	fmt.Println(unsafe.Sizeof(a)) // 24 bytes
 }
