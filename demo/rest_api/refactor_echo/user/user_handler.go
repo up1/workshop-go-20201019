@@ -15,7 +15,7 @@ type UserHandler struct {
 }
 
 func NewUserHandler(e *echo.Echo, service UserServicer) {
-	h := &UserHandler{Service: service}
+	h := UserHandler{Service: service}
 	e.GET("/user", h.GetUser)
 }
 

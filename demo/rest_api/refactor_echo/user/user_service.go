@@ -20,5 +20,6 @@ func NewUserService() UserService {
 
 func (us UserService) GetUser(c context.Context) (User, error) {
 	user := User{}
+	// TODO :: business process/flow
 	return user, nil
 }

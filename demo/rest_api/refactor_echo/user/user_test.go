@@ -25,7 +25,7 @@ func (s stubUserService) GetUser(c context.Context) (user.User, error) {
 func TestSuccessWithGetUser(t *testing.T) {
 
 	e := echo.New()
-	req, err := http.NewRequest(echo.GET, "/user", nil)
+	req, err := http.NewRequest(http.MethodGet, "/user", nil)
 	assert.NoError(t, err)
 
 	rec := httptest.NewRecorder()
@@ -43,7 +43,7 @@ func TestSuccessWithGetUser(t *testing.T) {
 func TestFailWithGetUser(t *testing.T) {
 
 	e := echo.New()
-	req, err := http.NewRequest(echo.GET, "/user", nil)
+	req, err := http.NewRequest(http.MethodGet, "/userd", nil)
 	assert.NoError(t, err)
 
 	rec := httptest.NewRecorder()
