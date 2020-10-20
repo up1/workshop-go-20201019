@@ -2,17 +2,16 @@ package main
 
 import (
 	"fmt"
-	"runtime/debug"
+	"reflect"
 )
 
 func handle() {
 	if err := recover(); err != nil {
-		if err == "Hey" {
-			fmt.Println("Hey Hey")
-		}
-		debug.PrintStack()
+		t1 := fmt.Sprintf("%T", err)
+		t2 := fmt.Sprintf("%s", reflect.TypeOf(err))
+		fmt.Println(t1, t2)
 	}
-	fmt.Println("handle...")
+
 }
 
 func main() {
