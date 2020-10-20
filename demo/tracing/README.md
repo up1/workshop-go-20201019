@@ -22,4 +22,8 @@ Run trace tool
 ```
 $go run demo_01.go > trace.out
 $go tool trace trace.out
+
+or 
+$go test <package name> -trace trace.out
+$go tool trace trace.out
 ```
