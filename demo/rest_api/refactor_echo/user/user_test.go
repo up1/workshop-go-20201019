@@ -41,9 +41,8 @@ func TestSuccessWithGetUser(t *testing.T) {
 }
 
 func TestFailWithGetUser(t *testing.T) {
-
 	e := echo.New()
-	req, err := http.NewRequest(http.MethodGet, "/userd", nil)
+	req, err := http.NewRequest(http.MethodGet, "/user", nil)
 	assert.NoError(t, err)
 
 	rec := httptest.NewRecorder()
