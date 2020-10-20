@@ -19,6 +19,6 @@ func main() {
 	defer handle()
 	// panic("Hey")
 	var a []int
-	a[1] = 5
+	a[1] = 5 // Panic => index out of range
 	fmt.Println("Finish")
 }
