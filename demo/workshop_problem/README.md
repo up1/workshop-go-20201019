@@ -3,6 +3,10 @@
 ```
 $go test -run none -bench . -benchtime 3s -benchmem -cpuprofile cpu.out
 
+$pprof -http=:6060 cpu.out
+
+or
+
 $go tool pprof workshop_problem.test cpu.out
 > top
 > web
