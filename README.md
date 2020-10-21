@@ -1,5 +1,8 @@
 # Workshop go 20201019
 
+## Examples
+* [REST API](https://github.com/up1/workshop-go-20201019/tree/main/demo/rest_api)
+
 ## Day 1
 * Main and init function
 * Go tools (basic)
