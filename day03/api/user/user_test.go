@@ -3,6 +3,7 @@ package user_test
 import (
 	"context"
 	"demo/user"
+	"fmt"
 	"net/http"
 	"net/http/httptest"
 	"testing"
@@ -21,9 +22,10 @@ func (s stubUserService) GetUser(c context.Context) (user.User, error) {
 }
 
 func TestSuccessWithGetUser(t *testing.T) {
+	gin.SetMode(gin.TestMode)
 	rec := httptest.NewRecorder()
 	c, _ := gin.CreateTestContext(rec)
-
+	c.Request, _ = http.NewRequest(http.MethodGet, "/user", nil)
 	handler := user.UserHandler{
 		Service: stubUserService{},
 	}
@@ -33,18 +35,15 @@ func TestSuccessWithGetUser(t *testing.T) {
 	assert.JSONEq(t, `{"firstname":"user test","lastname":"","title":""}`, rec.Body.String())
 }
 
-// func TestFailWithGetUser(t *testing.T) {
-// 	e := echo.New()
-// 	req, err := http.NewRequest(http.MethodGet, "/user", nil)
-// 	assert.NoError(t, err)
+func TestFailWithGetUser(t *testing.T) {
+	gin.SetMode(gin.TestMode)
+	rec := httptest.NewRecorder()
+	c, _ := gin.CreateTestContext(rec)
+	c.Request, _ = http.NewRequest(http.MethodGet, "/user", nil)
+	handler := user.UserHandler{
+		Service: stubUserService{err: fmt.Errorf("Error")},
+	}
+	handler.GetUser(c)
 
-// 	rec := httptest.NewRecorder()
-// 	c := e.NewContext(req, rec)
-// 	handler := user.UserHandler{
-// 		Service: stubUserService{err: fmt.Errorf("Error")},
-// 	}
-// 	err = handler.GetUser(c)
-// 	require.NoError(t, err)
-
-// 	assert.Equal(t, http.StatusInternalServerError, rec.Code)
-// }
+	assert.Equal(t, http.StatusInternalServerError, rec.Code)
+}
